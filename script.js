@@ -24,8 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 3. Scroll Reveal Animations (Intersection Observer)
-    
-    // Prepare text for line-by-line reveal
     const textReveals = document.querySelectorAll('.reveal-text');
     textReveals.forEach(text => {
         let content = text.innerHTML;
@@ -49,4 +47,28 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.reveal-up, .reveal-text').forEach(el => {
         observer.observe(el);
     });
+
+    // 4. Mobile Hamburger Menu Logic
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const nav = document.querySelector('nav');
+
+    if(hamburger) {
+        // Toggle menu open/close
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            nav.classList.toggle('menu-open');
+        });
+
+        // Close menu automatically when a link is clicked
+        const mobileLinks = document.querySelectorAll('.nav-links a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                nav.classList.remove('menu-open');
+            });
+        });
+    }
 });
